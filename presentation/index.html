@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>georef warm-up</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/ubc.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+
+					<h3>A warm up to georeferencing scanned paper maps</h3>
+					<img src="img/forestinventory.gif" >
+					<p>Evan Thornberry | GIS Librarian</p>
+
+					<aside class="notes">
+					</aside>
+
+				</section>
+
+
+				<section>
+
+					<h3>two parts to this session:</h3>
+					<ol>
+						<li>Crash course slideshow</li>
+						<li>Hands-on activity (the rest of the time)</li>
+					</ol>
+
+					<aside class="notes">
+					</aside>
+
+				</section>
+
+				<section>
+
+					<p>Session is geared toward beginners</p>
+					<p>Please feel free to ask questions</p>
+
+					<aside class="notes">
+					</aside>
+
+				</section>
+
+				<section>
+
+					<img src="img/swbc.png" >
+
+					<aside class="notes">
+					</aside>
+
+				</section>
+
+				<section>
+
+					<h3 style="margin-bottom:50px; border-bottom: 1px #002145 solid;">Georeferece</h3>
+					<p><em>providing geographic context to an object</em></p>
+					<aside class="notes">
+					</aside>
+
+				</section>
+
+				<section>
+
+					<h3 style="margin-bottom:50px; border-bottom: 1px #002145 solid;">Geocode</h3>
+					<p><em>assigning coordinates to locations (very often addresses)</em></p>
+					<aside class="notes">
+					</aside>
+
+				</section>
+
+				<section>
+
+					<h3 style="margin-bottom:50px; border-bottom: 1px #002145 solid;">Georectify</h3>
+					<p><em>transforming an image into a geospatial data source (i.e. a scanned paper map into a GIS layer)</em></p>
+					<aside class="notes">
+					</aside>
+
+				</section>
+
+				<section>
+
+					<p>we’re georeferencing a map by georectifying it's image</p>
+					<aside class="notes">
+					</aside>
+
+				</section>
+
+				<section>
+
+					<h3>pixels ⇢ coordinates</h3>
+
+					<aside class="notes">
+					</aside>
+
+				</section>
+
+				<section>
+
+					<h3>Why is this important?</h3>
+					<p class="fragment fade-in-then-semi-out">turn historic info into "data"</p>
+					<p class="fragment fade-in-then-semi-out">visualize / analyze change over time</p>
+					<p class="fragment fade-in-then-semi-out">understand "place" in new contexts</p>
+
+					<aside class="notes">
+					</aside>
+
+				</section>
+
+				<section><iframe src="tiles/leaflet.html" style="top:0; left:0; bottom:0; right:0; width:100%; height:600px; border:none; margin:0; padding:0; "></iframe>
+</section>
+
+					<section>
+
+						<h3>How is this done?</h3>
+						<p class="fragment fade-in-then-semi-out">step 1: find image to be georeferenced + corresponding dataset</p>
+						<p class="fragment fade-in-then-semi-out">step 2: match locations</p>
+						<p class="fragment fade-in-then-semi-out">step 3: transform image into geospatial raster data</p>
+
+						<aside class="notes">
+						</aside>
+
+					</section>
+
+					<section>
+
+						<h3>What is needed?</h3>
+						<p class="fragment fade-in-then-semi-out">a quality scanned map or aerial image</p>
+						<p class="fragment fade-in-then-semi-out">a dataset</p>
+						<p class="fragment fade-in-then-semi-out">a GIS</p>
+
+						<aside class="notes">
+						</aside>
+
+					</section>
+
+					<section>
+
+						<h3>Ground Control Points</h3>
+						<p class="fragment fade-in-then-semi-out">points on both image and dataset</p>
+						<p class="fragment fade-in-then-semi-out">locating them is a manual process</p>
+						<p class="fragment fade-in-then-semi-out">generally something that has not moved</p>
+						<p class="fragment fade-in-then-semi-out">ideally 6-10 per image</p>
+
+						<aside class="notes">
+						</aside>
+
+					</section>
+
+					<section>
+
+						<h3>Geometric Transformations</h3>
+						<p class="fragment fade-in-then-semi-out">GCP pixels coordinates ⇢ lat/long coordinates</p>
+						<p class="fragment fade-in-then-semi-out">several different types</p>
+						<p class="fragment fade-in-then-semi-out">transformations may "warp" the image</p>
+
+						<aside class="notes">
+						</aside>
+
+					</section>
+
+					<section>
+
+						<h3>Residual Errors</h3>
+						<p class="fragment fade-in-then-semi-out">difference between where the point ended up compared to the actual location of the point</p>
+						<p class="fragment fade-in-then-semi-out">used to determine consistencey between GCPs</p>
+						<p class="fragment fade-in-then-semi-out">total residual error is recorded (RMSE) when transformed</p>
+
+						<aside class="notes">
+						</aside>
+
+					</section>
+
+					<section>
+
+						<h3>Let's open ArcMap and try this out!</h3>
+						<p>follow along with this worksheet:</p>
+						<p> <b>bit.ly/georef-handout</b></p>
+						<p>Use your hand out to follow along</p>
+
+						<aside class="notes">
+						</aside>
+
+					</section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
